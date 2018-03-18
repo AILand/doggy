@@ -36,24 +36,24 @@ class Predict(object):
     preds = model.predict(x)
     return preds[0]
 
+  @staticmethod
+  def plotpreds(image, preds):
+    """Displays image and the top-n predicted probabilities in a bar graph
+    Args:
+      image: PIL image
+      preds: list of predicted labels and their probabilities
+    """
+    plt.imshow(image)
+    plt.axis('off')
 
-def plot_preds(image, preds):
-  """Displays image and the top-n predicted probabilities in a bar graph
-  Args:
-    image: PIL image
-    preds: list of predicted labels and their probabilities
-  """
-  plt.imshow(image)
-  plt.axis('off')
-
-  plt.figure()
-  labels = ("jumping", "laying", "rolling", "sitting", "standing")
-  plt.barh([0, 1, 2, 3, 4], preds, alpha=0.5)
-  plt.yticks([0, 1, 2, 3, 4], labels)
-  plt.xlabel('Probability')
-  plt.xlim(0,1.01)
-  plt.tight_layout()
-  plt.show()
+    plt.figure()
+    labels = ("jumping", "laying", "rolling", "sitting", "standing")
+    plt.barh([0, 1, 2, 3, 4], preds, alpha=0.5)
+    plt.yticks([0, 1, 2, 3, 4], labels)
+    plt.xlabel('Probability')
+    plt.xlim(0,1.01)
+    plt.tight_layout()
+    plt.show()
 
 
 if __name__=="__main__":
@@ -64,5 +64,5 @@ if __name__=="__main__":
   model = load_model("models/87.2_model.hdf5")
   blah = Predict()
   preds = blah.predict(model, img2, target_size)
-  plot_preds(img2, preds)
+  blah.plotpreds(img2, preds)
 
