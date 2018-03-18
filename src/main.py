@@ -15,12 +15,15 @@ from predictfd import Predict
 
 
 target_size = (229, 229) #fixed size for InceptionV3 architecture
-
+blah = Predict()
+model = load_model("models/87.2_model.hdf5")
 
 class App(Frame):
     def __init__(self, master=None):
         Frame.__init__(self, master)
         self.pack()
+        #model = load_model("models/87.2_model.hdf5")
+        #blah = Predict()
 
 
 # create the application
@@ -32,8 +35,6 @@ def chooseimage():
     root.withdraw() 
     filename = filedialog.askopenfilename()
     img2 = Image.open(filename)
-    model = load_model("models/87.2_model.hdf5")
-    blah = Predict()
     preds = blah.predict(model, img2, target_size)
     blah.plotpreds(img2, preds)
 
@@ -71,8 +72,8 @@ go = tk.Button(master=back, text='Choose Image', command=chooseimage)
 go.pack()
 close = tk.Button(master=back, text='Quit', command=mw.destroy)
 close.pack()
-info = tk.Label(master=back, text='Made by me!', bg='red', fg='black')
-info.pack()
+#info = tk.Label(master=back, text='Made by me!', bg='red', fg='black')
+#info.pack()
 
 # start the program
 #myapp.mainloop()

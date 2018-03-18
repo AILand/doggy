@@ -31,8 +31,11 @@ class Predict(object):
       img = img.resize(target_size)
 
     x = image.img_to_array(img)
+    print("Here0")
     x = np.expand_dims(x, axis=0)
+    print("Here1")
     x = preprocess_input(x)
+    print("Here2")    
     preds = model.predict(x)
     return preds[0]
 
@@ -54,9 +57,12 @@ class Predict(object):
     plt.xlim(0,1.01)
     plt.tight_layout()
     plt.show()
+    print("Graph render complete")
+    
 
 
 if __name__=="__main__":
+  print("Predict start")    
   root = Tk()
   root.withdraw() 
   filename = filedialog.askopenfilename()
@@ -65,4 +71,5 @@ if __name__=="__main__":
   blah = Predict()
   preds = blah.predict(model, img2, target_size)
   blah.plotpreds(img2, preds)
+  print("Predict end")
 
